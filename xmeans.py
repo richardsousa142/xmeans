@@ -24,17 +24,6 @@ def calc_distance(correlation):
   distance_corr = np.sqrt(0.5 * (1 - correlation))
   return distance_corr
 
-def euclidian_distance_improve(len_stocks, distance_df):
-  eucli_dist = pd.DataFrame()
-  for n in range(len_stocks):
-    for k in range(( distance_df.shape[0] * distance_df.shape[1] )):
-      row = int(np.floor(k / distance_df.shape[1]))
-      col = k % distance_df.shape[1]
-      eucli_dist.loc[row, col] = np.sqrt((distance_df.iloc[n, row] - distance_df.iloc[n, col]) ** 2)
-  eucli_dist.index = distance_df.index
-  eucli_dist.columns = distance_df.columns
-  return eucli_dist
-
 class XMeans:
     def __init__(self, k_min=2, k_max=10, max_iter=100):
         #self.data = data
